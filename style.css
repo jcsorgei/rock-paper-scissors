@@ -1,0 +1,38 @@
+body{
+    background-color: #4383C3;
+
+}
+
+.round{
+    text-align: center;
+    color: white;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 300%;
+    padding-top: 10px;
+
+}
+.choices{
+    
+    display:flex;
+    justify-content: space-evenly;
+    
+    
+}
+.score{
+    text-align: center;
+    color: white;
+    font-family: "Courier New", Courier, monospace;
+    padding-bottom: 20px;
+
+}
+.container{
+    width: 400px;
+ 
+}
+
+img:hover{
+    transform: scale(1.2);
+    cursor:pointer;
+
+
+}

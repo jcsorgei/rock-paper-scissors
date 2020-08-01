@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <h1 class="round">ROUND 1/5</h1>
+
+
+    <div style="display:flex;justify-content: center;">
+
+
+
+        <div class="container">
+
+
+            <h2 class="score user">Your score: 0</h2>
+            <div class="choices">
+                <img class="choice" src="https://www.rpsgame.org/assets/img/rock.svg" alt="rock" width="100px"
+                    height="120px">
+                <img class="choice" src="https://www.rpsgame.org/assets/img/paper.svg" alt="paper" width="100px"
+                    height="120px">
+                <img class="choice" src="https://www.rpsgame.org/assets/img/scissors.svg" alt="scissors" width="100px"
+                    height="120px">
+
+            </div>
+            <h2 style="padding-top:20px" class="score">Choose one!</h2>
+        </div>
+
+
+        <div class="container">
+
+
+            <h2 class="score ai">AI score: 0</h2>
+            <div class="choices opponent">
+                <!--<img src="https://www.rpsgame.org/assets/img/rock.svg" alt="rock" width="100px" height="120px">
+            <!--<img src="https://www.rpsgame.org/assets/img/paper.svg" alt="paper" width="100px" height="120px">
+            <img src="https://www.rpsgame.org/assets/img/scissors.svg" alt="scissors" width="100px" height="120px">
+            -->
+            </div>
+            <h2 style="padding-top:20px" class="score msg"></h2>
+        </div>
+
+
+    </div>
+    <h1 class="round res"></h1>
+
+
+    <script>
+        let div = document.querySelector(".opponent");
+        let rock = document.createElement("img");
+        let paper = document.createElement("img");
+        let scissors = document.createElement("img");
+
+        rock.src = "https://www.rpsgame.org/assets/img/rock.svg";
+        rock.width = 100;
+        rock.height = 120;
+
+        paper.src = "https://www.rpsgame.org/assets/img/paper.svg";
+        paper.width = 100;
+        paper.height = 120;
+
+        scissors.src = "https://www.rpsgame.org/assets/img/scissors.svg";
+        scissors.width = 100;
+        scissors.height = 120;
+
+        let round = 1;
+        let score = 0;
+        let aiScore = 0;
+        const result = document.querySelector(".res");
+        const roundText = document.querySelector(".round");
+        const aiScoreText = document.querySelector(".ai");
+        const scoreText = document.querySelector(".user");
+        const userChoice = document.querySelectorAll(`img[class="choice"]`);
+        const msg = document.querySelector(".msg");
+        userChoice.forEach(choice => {
+            choice.addEventListener("click", () => console.log(playRound(choice.alt, computerPlay())));
+
+
+
+        });
+
+
+        function computerPlay() {
+
+
+
+
+
+            console.log("asdasdasdsadsdaasdsad");
+            div.innerHTML = "";
+            let choice = Math.floor(Math.random() * 3);
+            switch (choice) {
+                case 0:
+                    div.appendChild(rock);
+                    console.log(rock);
+                    return "rock";
+
+
+                case 1:
+                    div.appendChild(paper);
+                    console.log(paper);
+                    return "paper";
+
+
+                case 2:
+                    div.appendChild(scissors);
+                    console.log(scissors);
+                    return "scissors";
+
+            }
+
+        }
+
+
+        function playRound(playerSelection, computerSelection) {
+
+
+            switch (playerSelection) {
+
+                case "rock":
+                    if (computerSelection == "rock") {
+                        msg.textContent = "Draw Rock-Rock";
+                    }
+                    else if (computerSelection == "scissors") {
+                        score++;
+                        msg.textContent = "You win! Rock beats scissors !";
+                    }
+                    else {
+                        aiScore++;
+                        msg.textContent = "Computer wins! Paper beats rock!";
+                    }
+                    break;
+
+                case "paper":
+                    if (computerSelection == "paper") {
+                        msg.textContent = "Draw Paper-Paper";
+                    }
+                    else if (computerSelection == "scissors") {
+                        aiScore++;
+                        msg.textContent = "Computer wins! Scissors beat paper!";
+                    }
+                    else {
+                        score++;
+                        msg.textContent = "You win! Paper beats rock!";
+                    }
+                    break;
+
+                case "scissors":
+                    if (computerSelection == "scissors") {
+                        msg.textContent = "Draw Scissors-Scissors";
+                    }
+                    else if (computerSelection == "paper") {
+                        score++;
+                        msg.textContent = "You win! Scissors beats paper !";
+                    }
+                    else {
+                        aiScore++;
+                        msg.textContent = "Computer wins! Rock beats scissors!";
+                    }
+
+                    break;
+
+
+            }
+
+            round++;
+            scoreText.textContent = `Your score: ${score}`;
+            aiScoreText.textContent = `AI score: ${aiScore}`;
+            result.textContent="";
+            if (round > 5) {
+
+                if (aiScore < score) {
+                    result.textContent = "You won!"
+
+                }
+                else if (aiScore > score) {
+                    result.textContent = "AI won!";
+                }
+                else {
+                    result.textContent = "Draw";
+                }
+                roundText.textContent = `ROUND 1/5`;
+                scoreText.textContent = `Your score: 0`;
+                aiScoreText.textContent = `AI score: 0`;
+                round = 1;
+                aiScore = 0;
+                score = 0;
+
+                return;
+            }
+
+
+            roundText.textContent = `ROUND ${round}/5`;
+
+
+        }
+
+
+
+
+    </script>
+
+
+
+</body>
+
+
+</html>
